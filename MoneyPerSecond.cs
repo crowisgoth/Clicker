@@ -9,7 +9,7 @@ public class MoneyPerSecond : MonoBehaviour
 {
     ClickEarn money;
     [SerializeField] TMP_Text MPMText;
-    static public int MoneyPerMin = 30;
+    static public double MoneyPerMin = 30;
     // Start is called before the first frame update
     void Start()
     {

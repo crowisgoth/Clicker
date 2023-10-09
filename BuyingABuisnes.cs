@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class BuyingABuisnes : MonoBehaviour
 {
-    
+
     int maxValue = 10;
-    [SerializeField] public   double[] PriceMoney;
+    [SerializeField] public double[] PriceMoney;
     [SerializeField] TMP_Text[] PricesText;
 
     private void Start()
     {
-        
+
         PricesText[0].text = "Купить ферму за" + PriceMoney[0];
         PricesText[1].text = "Купить банк за" + PriceMoney[1];
         PricesText[2].text = "Купить кафе за" + PriceMoney[2];
@@ -23,17 +23,18 @@ public class BuyingABuisnes : MonoBehaviour
     public void BuyAFarm()
     {
         int currentValue = 0;
-        if (currentValue<maxValue && ClickEarn._currentMoney >= PriceMoney[0]) 
+        if (currentValue < maxValue && ClickEarn._currentMoney >= PriceMoney[0])
         {
-            
+
             MoneyPerSecond.MoneyPerMin += 30;
             ClickEarn._currentMoney -= PriceMoney[0];
             currentValue += 1;
-            
+
         }
-        else {
+        else
+        {
             //Сделай потом окно что достиг максимума
-             }
+        }
     }
     public void BuyABank()
     {
