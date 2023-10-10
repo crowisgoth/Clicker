@@ -59,7 +59,7 @@ public class SaleForClick : MonoBehaviour
         //    aBuisnes.PriceMoney[i] = oldPricesOfBuisnes[i];
         //}
         yield return new WaitForSeconds(18000);
-        UpgradeClick.upgradeCost = oldUpgradeCost;
+        //UpgradeClick.upgradeCost = oldUpgradeCost;
         UpButton.interactable = true;
     }
    public void test()

@@ -22,31 +22,31 @@ public class UpgradeClick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cl = GetComponent<ClickEarn>();
         
+        cl = GetComponent<ClickEarn>();
+        upgradeCost += upgradeCost * 2;
+        upgCost.text = "Улучшить клик за \n" + upgradeCost.ToString("F" + 0);
     }
 
     
     public void Upgrade()
      {
-        
             
-            upgradeCost = baseCost * Math.Pow(1 + upgradeFactor, upgradeNumber);
-            clickValue = baseValue * Math.Pow(1 + upgradeFactor, upgradeNumber);
-           
             if (ClickEarn._currentMoney >= (int)upgradeCost)
             {
-                upgradeNumber = Math.Floor((double)ClickEarn._currentMoney / baseCost) + 1;
-                ClickEarn._currentMoney -= (int)upgradeCost;
-                baseValue = clickValue;
-                baseCost = upgradeCost;
-                cl.CurrentMoney.text = ClickEarn._currentMoney.ToString("F" + 1);
-            }
+                ClickEarn._currentMoney = ClickEarn._currentMoney - upgradeCost;   
+                baseValue = baseValue*2;
+                
+                cl.CurrentMoney.text = ClickEarn._currentMoney.ToString("F" + 0);
+                upgradeCost += upgradeCost *2 ;
+                upgCost.text = "Улучшить клик за \n" + upgradeCost.ToString("F" + 0);
+        }
 
         
     }
     void Update()
     {
-        upgCost.text = "Улучшить клик за \n" + upgradeCost;
+
+        
     }
 }
