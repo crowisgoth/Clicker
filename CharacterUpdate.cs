@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class CharacterUpdate : MonoBehaviour
 {
+    [SerializeField] Button UpdateClickbutton;
     // Start is called before the first frame update
-    [SerializeField] bool click = true;
+    [SerializeField] public bool click = true;
     [SerializeField] Button ClickButton;
-    double oldValue= 0;
+    public double oldValue= 0;
     UpgradeClick upgradeClick;
     private void Start()
     {
@@ -19,16 +20,17 @@ public class CharacterUpdate : MonoBehaviour
     {
         if (click) 
         {
-            Debug.Log("Hello");
+            
             oldValue = upgradeClick.baseValue;
             click = false;
             upgradeClick.baseValue += upgradeClick.baseValue;
             ClickButton.interactable = false;
             yield return new WaitForSeconds(30);
             upgradeClick.baseValue = oldValue;
-            yield return new WaitForSeconds(600);
-            ClickButton.interactable = true;
             click = true;
+            yield return new WaitForSeconds(60);
+            ClickButton.interactable = true;
+            
 
         }
     }
