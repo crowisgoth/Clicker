@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelScale : MonoBehaviour
@@ -12,10 +10,6 @@ public class LevelScale : MonoBehaviour
     {
         _moneyPerMin = GetComponent<MoneyPerSecond>();
     }
-
-
-
-    // Update is called once per frame
     void Update()
     {
        if(exp == 500)

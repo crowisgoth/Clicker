@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +6,9 @@ public class ClickEarn : MonoBehaviour
     UpgradeClick clickup;
     public LevelScale lvl;
     public Text CurrentMoney;
+    [SerializeField] Text moneyShow;
     public static double _currentMoney;
-   
-    
-    // Start is called before the first frame update
+
     void Start()
     {
         CurrentMoney.text = _currentMoney.ToString("F" + 1);
@@ -21,7 +16,6 @@ public class ClickEarn : MonoBehaviour
         lvl = GetComponent<LevelScale>();
     }
 
-    // Update is called once per frame
     public void IsClick()
     {
         
@@ -33,6 +27,7 @@ public class ClickEarn : MonoBehaviour
     }
     private void Update()
     {
+        moneyShow.text = clickup.baseValue.ToString() + " За клик";
         CurrentMoney.text = _currentMoney.ToString("F" + 1);
     }
 }

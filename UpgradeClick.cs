@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using System;
-using UnityEngine.UI;
 using TMPro;
 
 public class UpgradeClick : MonoBehaviour
@@ -10,19 +7,15 @@ public class UpgradeClick : MonoBehaviour
     ClickEarn cl;
     SaleForClick sale;
     CharacterUpdate charUp;
-    public int upgcost;
-
-
     [SerializeField]  public double baseValue = 1.0;
+    public int upgcost;
     static public double upgradeFactor = 0.1;
-     static public double baseCost = 10.0;
+    static public double baseCost = 10.0;
     static public double baseCostSecond = 10.0;
-    static double upgradeNumber;
     static public double upgradeCost = 10;
-    static double clickValue;
-     public TMP_Text upgCost;
+    public TMP_Text upgCost;
     
-    // Start is called before the first frame update
+
     void Start()
     {
         sale = GetComponent<SaleForClick>();
@@ -58,7 +51,7 @@ public class UpgradeClick : MonoBehaviour
                     ClickEarn._currentMoney = ClickEarn._currentMoney - upgradeCost;
                     charUp.oldValue = charUp.oldValue * 2;
                     cl.CurrentMoney.text = ClickEarn._currentMoney.ToString("F" + 0);
-                    upgradeCost = sale.oldUpgradeCost * 3;
+                    upgradeCost = sale.oldUpgradeCost * 3 + sale.SaleCost;
                     sale.active = false;
                 }
                 
