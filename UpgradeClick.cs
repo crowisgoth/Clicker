@@ -7,7 +7,7 @@ public class UpgradeClick : MonoBehaviour
     ClickEarn cl;
     SaleForClick sale;
     CharacterUpdate charUp;
-    [SerializeField]  public double baseValue = 1.0;
+    [SerializeField]  public double baseValue = 1.1;
     public int upgcost;
     static public double upgradeFactor = 0.1;
     static public double baseCost = 10.0;

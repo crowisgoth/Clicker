@@ -28,6 +28,6 @@ public class ClickEarn : MonoBehaviour
     private void Update()
     {
         moneyShow.text = clickup.baseValue.ToString() + " За клик";
-        CurrentMoney.text = _currentMoney.ToString("F" + 1);
+        CurrentMoney.text = _currentMoney.ToString("F" + 2);
     }
 }
