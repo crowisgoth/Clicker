@@ -7,61 +7,56 @@ public class UpgradeClick : MonoBehaviour
     ClickEarn cl;
     SaleForClick sale;
     CharacterUpdate charUp;
-    [SerializeField]  public double baseValue = 1.1;
-    public int upgcost;
-    static public double upgradeFactor = 0.1;
-    static public double baseCost = 10.0;
-    static public double baseCostSecond = 10.0;
-    static public double upgradeCost = 10;
     public TMP_Text upgCost;
-    
 
     void Start()
     {
         sale = GetComponent<SaleForClick>();
         cl = GetComponent<ClickEarn>();
         charUp = GetComponent<CharacterUpdate>();
-        upgradeCost += upgradeCost * 2;
-        upgCost.text = "Улучшить клик за \n" + upgradeCost.ToString("F" + 0);
+        Values.upgradeCost += Values.upgradeCost * 2;
+        upgCost.text = "Улучшить клик за \n" + Values.upgradeCost.ToString("F" + 0);
+
     }
 
     
     public void Upgrade()
      {
            
-            if (ClickEarn._currentMoney >= (int)upgradeCost)
+            if (Values._myCurrentMoney >= (int)Values.upgradeCost)
             {
-            if (charUp.click == false && sale.active == false)
+            if (Values.bonusDoubleClickActive == false && Values.bonusSaleClickActive == false)
             {
-                charUp.oldValue = charUp.oldValue * 2;
-                ClickEarn._currentMoney = ClickEarn._currentMoney - upgradeCost;
+                Values.oldValueMoneyClick = Values.oldValueMoneyClick * 2;
+                Values._myCurrentMoney = Values._myCurrentMoney - Values.upgradeCost;
 
-                cl.CurrentMoney.text = ClickEarn._currentMoney.ToString("F" + 0);
-                upgradeCost += upgradeCost * 2;
+                cl.CurrentMoney.text = Values._myCurrentMoney.ToString("F" + 0);
+                Values.upgradeCost += Values.upgradeCost * 2;
+
             }
-                   else if (sale.active == false && charUp.click == true) 
+                   else if (Values.bonusSaleClickActive == false && Values.bonusDoubleClickActive == true) 
                     {
-                        ClickEarn._currentMoney = ClickEarn._currentMoney - upgradeCost;
-                        baseValue = baseValue * 2;
-                        cl.CurrentMoney.text = ClickEarn._currentMoney.ToString("F" + 0);
-                        upgradeCost += upgradeCost * 2;
+                        Values._myCurrentMoney = Values._myCurrentMoney - Values.upgradeCost;
+                        Values.moneyForClick = Values.moneyForClick * 2;
+                        cl.CurrentMoney.text = Values._myCurrentMoney.ToString("F" + 0);
+                        Values.upgradeCost += Values.upgradeCost * 2;
                     }
-                if(sale.active == true)
+                if(Values.bonusSaleClickActive == true)
                 {
-                    ClickEarn._currentMoney = ClickEarn._currentMoney - upgradeCost;
-                    charUp.oldValue = charUp.oldValue * 2;
-                    cl.CurrentMoney.text = ClickEarn._currentMoney.ToString("F" + 0);
-                    upgradeCost = sale.oldUpgradeCost * 3 + sale.SaleCost;
-                    sale.active = false;
+                    Values._myCurrentMoney = Values._myCurrentMoney - Values.upgradeCost;
+                    Values.oldValueMoneyClick = Values.oldValueMoneyClick * 2;
+                    cl.CurrentMoney.text = Values._myCurrentMoney.ToString("F" + 0);
+                    Values.upgradeCost = Values.oldUpgradeCost * 3 + Values.bonusSaleClickedCount;
+                    Values.bonusSaleClickActive = false;
                 }
                 
             }
+        Values.Save();
 
-        
     }
     void Update()
     {
-        upgCost.text = "Улучшить клик за \n" + upgradeCost.ToString("F" + 0);
+        upgCost.text = "Улучшить клик за \n" + Values.upgradeCost.ToString("F" + 0);
 
     }
 }

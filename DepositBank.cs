@@ -6,12 +6,11 @@ using TMPro;
 
 public class DepositBank : MonoBehaviour
 {
-    
     [SerializeField] public GameObject prefab;
     TMP_InputField inputFieldText;
     [SerializeField] int inputChar;
-
     
+
     private void Start()
     {
         inputFieldText = GetComponentInChildren<TMP_InputField>();
@@ -22,16 +21,16 @@ public class DepositBank : MonoBehaviour
 
     public void SetDeposit()
     {
-
+        
         inputChar = int.Parse(inputFieldText.text);
-        if (ClickEarn._currentMoney >= inputChar)
+        if (Values._myCurrentMoney >= inputChar && inputChar >= 10)
         {
-            
+            Values.Save();
             Instantiate(prefab, transform);
-            ClickEarn._currentMoney -= inputChar;
+            Values._myCurrentMoney -= inputChar;
 
         }
-        else Debug.Log("Недостаточно денег");
+        else Debug.Log("Минимальная сумма для вклада 10$");
         }
     
 

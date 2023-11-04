@@ -4,9 +4,9 @@ using TMPro;
 
 public class MoneyPerSecond : MonoBehaviour
 {
-    ClickEarn money;
+    
     [SerializeField] TMP_Text MPMText;
-    static public int MoneyPerMin = 30;
+    ClickEarn money;
     void Start()
     {
         money = GetComponent<ClickEarn>();
@@ -14,20 +14,22 @@ public class MoneyPerSecond : MonoBehaviour
     }
     void Update()
     {
-        MPMText.text = "В минуту вы получаете " + MoneyPerMin; 
+        MPMText.text = "В минуту вы получаете " + Values.moneyPerMin; 
     }
     private IEnumerator Curotine()
     {
         while (true)
         {
             yield return new WaitForSeconds(60);
-            addMoney();  
+            addMoney();
+            Values.Save();
+
         }
     }
     private void addMoney()
     {
-        ClickEarn._currentMoney += MoneyPerMin;
-        money.CurrentMoney.text = ClickEarn._currentMoney.ToString();
+        Values._myCurrentMoney += Values.moneyPerMin;
+        money.CurrentMoney.text = Values._myCurrentMoney.ToString();
     }
 
 }

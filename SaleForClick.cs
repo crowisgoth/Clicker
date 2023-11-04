@@ -7,34 +7,32 @@ public class SaleForClick : MonoBehaviour
     
     [SerializeField] Button UpButton;
     [SerializeField] Button ClickButton;
-    public double SaleCost = 0;
-    public double oldUpgradeCost = 0.0;
-    public bool active = false;
+    
     
         public void SalePrice()
         {
-            SaleCost += 1.0;
+            Values.bonusSaleClickedCount += 1.0f;
         }
   
     IEnumerator startSale()
     {
-        if (active == false)
+        if (Values.bonusSaleClickActive == false)
         {
             
             UpButton.interactable = false;
             ClickButton.interactable = true;
             
             yield return new WaitForSeconds(10);
-            oldUpgradeCost = UpgradeClick.upgradeCost;
-            active = true;
+            Values.oldUpgradeCost = Values.upgradeCost;
+            Values.bonusSaleClickActive = true;
             ClickButton.interactable = false;
-                if (UpgradeClick.upgradeCost < SaleCost)
+                if (Values.upgradeCost < Values.bonusSaleClickedCount)
                 {
-                    UpgradeClick.upgradeCost = 0;
+                Values.upgradeCost = 0;
                 }
                     else
-                        { UpgradeClick.upgradeCost = UpgradeClick.upgradeCost - SaleCost; }
-            SaleCost = 0;
+                        { Values.upgradeCost = Values.upgradeCost - Values.bonusSaleClickedCount; }
+            Values.bonusSaleClickedCount = 0;
             yield return new WaitForSeconds(30);
             UpButton.interactable = true;
         }

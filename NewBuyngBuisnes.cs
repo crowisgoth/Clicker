@@ -5,18 +5,18 @@ public class NewBuyngBuisnes : MonoBehaviour
 {
     ClickEarn money;
     [SerializeField] GameObject Buyisnes;
-    [SerializeField] double costBuyisnes;
+    [SerializeField] float costBuyisnes;
     [SerializeField] string nameBuyisnes;
     [SerializeField] TMP_Text text;
     [SerializeField] int passiveSalary;
-    int maxValue = 10;
-    int currentValue;
+    
     public void Buying()
     {
-        if(currentValue < maxValue && ClickEarn._currentMoney >= costBuyisnes)
+        
+        if (Values.currentCountOfBuisneses < Values.buisnesesMaxCount && Values._myCurrentMoney >= costBuyisnes)
         {
-            ClickEarn._currentMoney = ClickEarn._currentMoney - costBuyisnes;
-            MoneyPerSecond.MoneyPerMin += passiveSalary;
+            Values._myCurrentMoney = Values._myCurrentMoney - costBuyisnes;
+            Values.moneyPerMin += passiveSalary;
         }
         
     }
